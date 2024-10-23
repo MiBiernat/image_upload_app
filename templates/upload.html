@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>60 urodziny Adama</title>
+    <!-- Link do Bootstrap i czcionki -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- ... pozostałe style ... -->
+    <style>
+        body {
+            background-color: black;
+            color: gold;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-image: url("{{ url_for('static', filename='xzy.png') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 50px;
+            font-family: 'Noto Serif Display', serif;
+            font-weight: 700;
+        }
+        form {
+            display: inline-block;
+            background-color: rgba(26, 26, 26, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            color: gold;
+        }
+        input[type="submit"] {
+            background-color: gold;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #e6b800;
+        }
+        .message {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>60 urodziny Adama</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="files[]" accept="image/*" multiple>
+        <input type="submit" value="Prześlij zdjęcia">
+    </form>
+    {% if message %}
+        <p class="message">{{ message }}</p>
+    {% endif %}
+</body>
+</html>

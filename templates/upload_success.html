@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Pliki przesłane - 60 urodziny Adama</title>
+    <!-- Link do Bootstrap i czcionki -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: gold;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-image: url("{{ url_for('static', filename='xzy.png') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 50px;
+            font-family: 'Noto Serif Display', serif;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        a {
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dziękujemy!</h1>
+    <p>Przesłane pliki:</p>
+    <ul>
+        {% for filename in filenames %}
+            <li>{{ filename }}</li>
+        {% endfor %}
+    </ul>
+    <p><a href="/">Prześlij kolejne zdjęcia</a></p>
+</body>
+</html>
