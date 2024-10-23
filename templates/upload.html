@@ -37,6 +37,11 @@
             }
         }
 
+        // Zaktualizowana obsługa przycisku wyboru plików
+        document.querySelector('.file-upload-btn').addEventListener('click', function() {
+            document.querySelector('input[type="file"]').click();
+        }); 
+
         // Aktualizacja nazwy pliku po wybraniu
         document.querySelector('input[type="file"]').addEventListener('change', function(e) {
             const fileName = e.target.files.length > 1 ? e.target.files.length + ' plików wybranych' : e.target.files[0].name;
