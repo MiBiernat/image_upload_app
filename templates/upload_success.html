@@ -2,56 +2,37 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pliki przesłane - 60 urodziny Adama</title>
-    <!-- Link do Bootstrap i czcionki -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: black;
-            color: gold;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 50px;
-            background-image: url("{{ url_for('static', filename='xzy.png') }}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 50px;
-            font-family: 'Noto Serif Display', serif;
-            font-weight: 700;
-        }
-        p {
-            font-size: 1.5em;
-        }
-        a {
-            color: gold;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            font-size: 1.2em;
-            margin: 5px 0;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Dziękujemy!</h1>
+    <div class="glitter" id="glitter"></div>
+    
+    <h1>Dziekujemy!</h1>
     <p>Przesłane pliki:</p>
     <ul>
         {% for filename in filenames %}
             <li>{{ filename }}</li>
         {% endfor %}
-    </ul>
-    <p><a href="/">Prześlij kolejne zdjęcia</a></p>
+    </ul> 
+    <p><a href="/" class="button">Prześlij kolejne zdjęcia</a></p>
+
+    <script>
+        function createGlitter() {
+            const glitter = document.getElementById('glitter');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('glitter-particle');
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                glitter.appendChild(particle);
+            }
+        }
+        createGlitter();
+    </script>
 </body>
-</html>
+</html> 
+ 

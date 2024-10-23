@@ -2,65 +2,78 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>60 urodziny Adama</title>
-    <!-- Link do Bootstrap i czcionki -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
-    <!-- ... pozostałe style ... -->
-    <style>
-        body {
-            background-color: black;
-            color: gold;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 50px;
-            background-image: url("{{ url_for('static', filename='xzy.png') }}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 50px;
-            font-family: 'Noto Serif Display', serif;
-            font-weight: 700;
-        }
-        form {
-            display: inline-block;
-            background-color: rgba(26, 26, 26, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        input[type="file"] {
-            display: block;
-            margin: 20px auto;
-            color: gold;
-        }
-        input[type="submit"] {
-            background-color: gold;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        input[type="submit"]:hover {
-            background-color: #e6b800;
-        }
-        .message {
-            color: red;
-            margin-top: 20px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>60 Urodziny Adama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>60 urodziny Adama</h1>
+    <div class="glitter" id="glitter"></div>
+    <div class="balloons" id="balloons"></div>
+    
+    <h1>60 Urodziny<br>Adama</h1>
     <form method="post" enctype="multipart/form-data">
-        <input type="file" name="files[]" accept="image/*" multiple>
+        <div class="file-upload">
+            <button type="button" class="file-upload-btn">Wybierz zdjęcia</button>
+            <input type="file" name="files[]" accept="image/*" multiple>
+        </div>
         <input type="submit" value="Prześlij zdjęcia">
     </form>
     {% if message %}
         <p class="message">{{ message }}</p>
     {% endif %}
+
+    <script>
+        // Skrypt do animacji brokatu
+        function createGlitter() {
+            const glitter = document.getElementById('glitter');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('glitter-particle');
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                glitter.appendChild(particle);
+            }
+        }
+
+        // Aktualizacja nazwy pliku po wybraniu
+        document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+            const fileName = e.target.files.length > 1 ? e.target.files.length + ' plików wybranych' : e.target.files[0].name;
+            document.querySelector('.file-upload-btn').textContent = fileName;
+        }); 
+
+        // Funkcja do tworzenia balonów
+        function createBalloons() {
+            const balloons = document.getElementById('balloons');
+            const colors = ['#FFD700', '#FF6347', '#4169E1', '#32CD32', '#FF69B4'];
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloons.appendChild(balloon);
+            }
+        }
+
+        // Wywołanie funkcji tworzącej balony
+        createBalloons();
+
+        // Funkcja do tworzenia efektu parady
+        function createParadeEffect() {
+            const elements = document.querySelectorAll('h1, .file-upload-btn, input[type=submit], .message');
+            elements.forEach(element => {
+                element.classList.add('parade-glow');
+            });
+        }
+
+        // Wywołanie funkcji tworzącej efekt parady
+        createParadeEffect();
+
+        // Wywołanie funkcji tworzącej brokat
+        createGlitter();
+    </script>
 </body>
 </html>
