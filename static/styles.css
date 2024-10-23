@@ -22,7 +22,7 @@ body {
 }
 
 h1 {
-    font-size: 27vw;
+    font-size: 40.5vw;
     margin-top: 0;
     margin-bottom: 3vh;
     font-family: 'Rouge Script', serif;
@@ -63,7 +63,7 @@ form {
 }
 
 .file-upload input[type=file] {
-    position: absolute;
+    position: absolute; 
     left: 0;
     top: 0;
     opacity: 0;
@@ -139,7 +139,7 @@ li {
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 15vw;
+        font-size: 22.5vw;
     }
     
     .file-upload-btn, input[type=submit] {
@@ -199,21 +199,24 @@ li {
 @keyframes parade-glow {
     from {
         text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700;
-        box-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700;
     }
     to {
-        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF00DE, 0 0 70px #FF00DE;
-        box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF00DE, 0 0 70px #FF00DE;
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700, 0 0 70px #FFD700;
     }
-}
+} 
 
 /* Dostosowanie istniejących stylów */
 .file-upload-btn, input[type=submit] {
     position: relative;
     z-index: 1;
+    box-shadow: none;
 }
 
 .message {
     position: relative;
     z-index: 1;
+}
+
+h1, .message {
+    animation: parade-glow 2s ease-in-out infinite alternate;
 }
